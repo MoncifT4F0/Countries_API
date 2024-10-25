@@ -10,7 +10,7 @@ export default function Countries_list() {
         return country.region.toUpperCase() === filter.toUpperCase()
     }
     let checkSearch = (country) => {
-        return (country.name.toUpperCase().includes(search.toUpperCase()) || country.alpha2Code.toUpperCase().includes(search.toUpperCase()) || country.alpha3Code.toUpperCase().includes(search.toUpperCase()) || country.capital.toUpperCase().includes(search.toUpperCase()) || country.demonym.toUpperCase().includes(search.toUpperCase()) || country.nativeName.toUpperCase().includes(search.toUpperCase()))
+        return (country.name.toUpperCase().includes(search.toUpperCase()) || country.alpha2Code.toUpperCase().includes(search.toUpperCase()) || country.alpha3Code.toUpperCase().includes(search.toUpperCase()) || country.demonym.toUpperCase().includes(search.toUpperCase()) || country.nativeName.toUpperCase().includes(search.toUpperCase()))
     }
 
     if (filter) {
@@ -48,8 +48,8 @@ export default function Countries_list() {
                 <div className="Search_field flex justify-between items-center py-11 px-8 ">
                     <div className="flex gap-4 items-center py-3 px-6 rounded-md 
                     bg-white dark:bg-darkBlueElements transition-colors duration-600 ease-in-out ">
-                        <img src={search_icon} alt="search-icon" className="w-4 h-4" />
-                        <input type="text" name="" id="" placeholder="Seach for a country..."
+                        <label htmlFor="search_bar"><img src={search_icon} alt="search-icon" className="w-4 h-4" /></label>
+                        <input type="text" name="" id="search_bar" placeholder="Seach for a country..."
                             onChange={(e) => setSearch(e.target.value)}
                             className="bg-transparent border-none outline-none 
                             " />
