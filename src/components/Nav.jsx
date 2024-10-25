@@ -6,6 +6,7 @@ export default function Nav() {
     useEffect(() => {
         const storedTheme = localStorage.getItem('theme')
         const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        
 
         if (storedTheme){
             setTheme(storedTheme)
@@ -30,6 +31,7 @@ export default function Nav() {
             setTheme('dark')
             localStorage.setItem('theme', 'dark');
         }
+
         
     }
     return (
@@ -40,7 +42,7 @@ export default function Nav() {
                             transition-colors duration-600 ease-in-out">
                 <h1 className="text-lg font-extrabold">Where in the world?</h1>
                 <div className="flex gap-2 items-center font-semibold cursor-pointer" onClick={switchMode}>
-                    <img src='src/assets/moon.png' alt="moon icon" className="w-4 h-4" />
+                    <img src={theme === 'dark' ? 'src/assets/light_moon.png' : 'src/assets/moon.png'} alt="moon icon" className="w-4 h-4" />
                     <p>{theme === 'dark' ? 'Light Mode' : 'Dark Mode'}</p>
                 </div>
             </div>
