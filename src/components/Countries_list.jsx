@@ -1,7 +1,8 @@
+/* eslint-disable react/prop-types */
 import { useState } from 'react';
 import data from '../store/data.json';
 
-export default function CountriesList() {
+export default function CountriesList({handleCountryClick}) {
     
     const [filter, setFilter] = useState('');
     const [search, setSearch] = useState('');
@@ -23,7 +24,7 @@ export default function CountriesList() {
                 setSearch={setSearch}
                 setFilter={setFilter}
             />
-            <CountryGrid countries={filteredData} />
+            <CountryGrid countries={filteredData} handleCountryClick={handleCountryClick}/>
         </div>
     );
 }
@@ -63,20 +64,21 @@ function FilterAndSearchBar({ search, setSearch, setFilter }) {
 }
 
 
-function CountryGrid({ countries }) {
+function CountryGrid({ countries, handleCountryClick}) {
     return (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 justify-items-center">
             {countries.map((country, index) => (
-                <CountryCard key={index} country={country} />
+                <CountryCard key={index} country={country} handleCountryClick={handleCountryClick}/>
             ))}
         </div>
     );
 }
 
 
-function CountryCard({ country }) {
+function CountryCard({ country, handleCountryClick }) {
     return (
-        <div className='mx-8 bg-white dark:bg-darkBlueElements transition-colors duration-600 ease-in-out'>
+        <div className='mx-8 bg-white dark:bg-darkBlueElements transition-colors duration-600 ease-in-out w-fit cursor-pointer'
+        onClick={() => {handleCountryClick(country)}}>
             <img src={country.flags.png} alt={`${country.name} flag`} />
             <div className='p-4'>
                 <p className='font-extrabold mb-2'>{country.name}</p>
