@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+import { motion } from "framer-motion";
 import data from '../store/data.json'
 export default function Country_details({ country, handleBack, handleCountryClick }) {
     console.log(country.name);
@@ -10,15 +11,27 @@ export default function Country_details({ country, handleBack, handleCountryClic
         }
     };
 
+    const animationVariants = {
+        hidden: { opacity: 0.7, y: -20 },
+        visible: { opacity: 1, y: 0 },
+    };
+
     return (
         <>
-            <div className="py-24 bg-veryLightGrayBg dark:bg-veryDarkBlueBg min-h-[100vh] text-veryDarkBlueText dark:text-whiteText">
+            <motion.div 
+                initial="hidden"
+                animate="visible"
+                exit="hidden"
+                variants={animationVariants}
+                transition={{ duration: 1 }}
+                className="py-24 bg-veryLightGrayBg dark:bg-veryDarkBlueBg min-h-[100vh] text-veryDarkBlueText dark:text-whiteText transition-colors duration-600 ease-in-out"
+            >
                 <div 
                     onClick={handleBack}
-                    className="cursor-pointer bg-white dark:bg-darkBlueElements text-veryDarkBlueText dark:text-white py-2 px-10 w-fit m-8">
+                    className="cursor-pointer bg-white dark:bg-darkBlueElements text-veryDarkBlueText dark:text-white py-2 px-10 w-fit m-8 transition-colors duration-600 ease-in-out">
                     <p className="text-sm">← &nbsp;&nbsp;Back</p>
                 </div>
-
+        
                 <div className="max-md:flex-col flex mx-8 gap-x-10 gap-y-10 w-full">
                     <img 
                         src={country.flags?.png} 
@@ -63,7 +76,7 @@ export default function Country_details({ country, handleBack, handleCountryClic
                         </div>
                     </div>
                 </div>
-            </div>
+            </motion.div>
         </>
     );
 }
